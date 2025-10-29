@@ -34,7 +34,10 @@ const DropdownUser = () => {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
-
+const handlelogout=()=>{
+  localStorage.removeItem("userid");
+  window.location.reload();
+}
   return (
     <div className="relative">
       <Link
@@ -155,7 +158,7 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button  onClick={handlelogout} className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
           <svg
             className="fill-current"
             width="22"
