@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import UserOne from '../images/user/user-01.png';
+import { Link, useNavigate } from 'react-router-dom';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+const nav=useNavigate();
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
@@ -36,6 +36,7 @@ const DropdownUser = () => {
   });
 const handlelogout=()=>{
   localStorage.removeItem("userid");
+  nav("/");
   window.location.reload();
 }
   return (

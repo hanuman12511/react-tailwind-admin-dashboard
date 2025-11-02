@@ -1,14 +1,13 @@
 import { lazy } from 'react';
+import Orders from '../pages/Dashboard/Orders';
+import CompleteOrder from '../pages/Dashboard/CompleteOrder';
+import Users from '../pages/Dashboard/Users';
+import AddProduct from '../pages/Dashboard/AddProduct';
 
 
-const Chart = lazy(() => import('../pages/Chart'));
-const FormElements = lazy(() => import('../pages/Form/FormElements'));
-const FormLayout = lazy(() => import('../pages/Form/FormLayout'));
+
 const Profile = lazy(() => import('../pages/Profile'));
-const Settings = lazy(() => import('../pages/Settings'));
-const Tables = lazy(() => import('../pages/Tables'));
-const Alerts = lazy(() => import('../pages/UiElements/Alerts'));
-const Buttons = lazy(() => import('../pages/UiElements/Buttons'));
+
 const Prodcut = lazy(() => import('../pages/Dashboard/Product'));
 
 const coreRoutes = [
@@ -18,45 +17,31 @@ const coreRoutes = [
     component: Prodcut,
   },
   {
+    path: '/addproduct',
+    title: 'Add Prodcut',
+    component: AddProduct,
+  },
+  {
     path: '/profile',
     title: 'Profile',
     component: Profile,
   },
   {
-    path: '/forms/form-elements',
-    title: 'Forms Elements',
-    component: FormElements,
+    path: '/order',
+    title: 'Orders',
+    component: Orders,
   },
   {
-    path: '/forms/form-layout',
-    title: 'Form Layouts',
-    component: FormLayout,
+    path: '/completeorder',
+    title: 'Complete Order',
+    component: CompleteOrder,
   },
   {
-    path: '/tables',
-    title: 'Tables',
-    component: Tables,
+    path: '/users',
+    title: 'Users',
+    component: Users,
   },
-  {
-    path: '/settings',
-    title: 'Settings',
-    component: Settings,
-  },
-  {
-    path: '/chart',
-    title: 'Chart',
-    component: Chart,
-  },
-  {
-    path: '/ui/alerts',
-    title: 'Alerts',
-    component: Alerts,
-  },
-  {
-    path: '/ui/buttons',
-    title: 'Buttons',
-    component: Buttons,
-  },
+  
 ];
 
 const routes = [...coreRoutes];

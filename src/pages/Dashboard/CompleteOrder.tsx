@@ -1,80 +1,11 @@
+const CompleteOrder =()=>{
+    return(
 
-const ECommerce = () => {
-  return (
-    <>
-      
-<div className="max-w-full grid md:grid-cols-5  gap-4 py-3">
-
-<div className="relative overflow-hidden w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div className="my-3">
-
-    <h3>
-      <strong>30</strong>
-    </h3>
-    <p className="">New Orders</p>
-    </div>
-<div className="bg-black w-full absolute  left-0 px-10">
-  <span className="text-white"> more info </span>
-</div>
-</div>
-<div className="relative overflow-hidden w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div className="my-3">
-
-    <h3>
-      <strong>30k</strong>
-    </h3>
-    <p className="">Today Amount</p>
-    </div>
-<div className="bg-black w-full absolute  left-0 px-10">
-  <span className="text-white"> more info </span>
-</div>
-</div>
-<div className="relative overflow-hidden w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div className="my-3">
-
-    <h3>
-      <strong>300k</strong>
-    </h3>
-    <p className="">Total Amount</p>
-    </div>
-<div className="bg-black w-full absolute  left-0 px-10">
-  <span className="text-white"> more info </span>
-</div>
-</div>
-<div className="relative overflow-hidden w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div className="my-3">
-
-    <h3>
-      <strong>300k</strong>
-    </h3>
-    <p className="">Register Users </p>
-    </div>
-<div className="bg-black w-full absolute  left-0 px-10">
-  <span className="text-white"> more info </span>
-</div>
-</div>
-<div className="relative overflow-hidden w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <div className="my-3">
-
-    <h3>
-      <strong>6k</strong>
-    </h3>
-    <p className="">Refund</p>
-    </div>
-<div className="bg-black w-full absolute  left-0 px-10">
-  <span className="text-white"> more info </span>
-</div>
-</div>
-
-
-
-</div>
-
-      <div className=" grid grid-cols-12 gap-4  ">
+        <div className=" grid grid-cols-12 gap-4  ">
         <div className="col-span-12 xl:col-span-12">
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Orders
+      Complete Order
       </h4>
 
 
@@ -174,8 +105,7 @@ const ECommerce = () => {
         </div>
         
     </div>
-    </>
-  );
-};
+    )
+}
+export default CompleteOrder
 
-export default ECommerce;
