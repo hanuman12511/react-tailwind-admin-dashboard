@@ -5,7 +5,7 @@ const CompleteOrder =()=>{
         <div className="col-span-12 xl:col-span-12">
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-      Complete Order
+        Orders
       </h4>
 
 
@@ -14,11 +14,11 @@ const CompleteOrder =()=>{
         <thead className="text-xs text-gray-700 uppercase  dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
-                    Product name
+                Order Number
                 </th>
                 <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">
-                        Color
+                       Product Name
                         <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
   </svg></a>
@@ -26,7 +26,7 @@ const CompleteOrder =()=>{
                 </th>
                 <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">
-                        Category
+                    Quantity
                         <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
   </svg></a>
@@ -34,77 +34,96 @@ const CompleteOrder =()=>{
                 </th>
                 <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">
-                        Price
+                       Total Amount
+                        <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
+  </svg></a>
+                    </div>
+                    </th>
+                <th scope="col" className="px-6 py-3">
+                    <div className="flex items-center">
+                      Address
                         <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
     <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
   </svg></a>
                     </div>
                 </th>
                 <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Edit</span>
+                    <span className="">Action</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
+                   1000012
                 </th>
                 <td className="px-6 py-4">
-                    Silver
+                    Product name
                 </td>
                 <td className="px-6 py-4">
-                    Laptop
+                   2
                 </td>
                 <td className="px-6 py-4">
-                    $2999
+                 Rs. 2999/-
+                </td>
+                <td className="px-6 py-4">
+                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
                 </td>
                 <td className="px-6 py-4 text-right">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">View</a>
                 </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
+                   1000012
                 </th>
                 <td className="px-6 py-4">
-                    White
+                    Product name
                 </td>
                 <td className="px-6 py-4">
-                    Laptop PC
+                   2
                 </td>
                 <td className="px-6 py-4">
-                    $1999
+                 Rs. 2999/-
+                </td>
+                <td className="px-6 py-4">
+                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
                 </td>
                 <td className="px-6 py-4 text-right">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">View</a>
+                   
                 </td>
             </tr>
-            <tr className="bg-white dark:bg-gray-800">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
+                   1000012
                 </th>
                 <td className="px-6 py-4">
-                    Black
+                    Product name
                 </td>
                 <td className="px-6 py-4">
-                    Accessories
+                   2
                 </td>
                 <td className="px-6 py-4">
-                    $99
+                 Rs. 2999/-
+                </td>
+                <td className="px-6 py-4">
+                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
                 </td>
                 <td className="px-6 py-4 text-right">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">View</a>
+                  
                 </td>
             </tr>
+           
         </tbody>
     </table>
 </div>
 
     </div>
         </div>
-        
-    </div>
+        </div>
     )
 }
 export default CompleteOrder
