@@ -16,7 +16,6 @@ export default function InvoiceGenerator() {
   const [taxRate, setTaxRate] = useState<any>(18);
   const cardRef = useRef<any>(null);
 
-  
   useEffect(() => {
     resetExample();
   }, []);
@@ -54,20 +53,43 @@ export default function InvoiceGenerator() {
       .join("\n");
 
     const html = `<!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8" />
-          <title>Invoice — ${meta.invoiceNo || ""}</title>
-          ${styles}
-          <style>
-            @media print { body { -webkit-print-color-adjust: exact; } }
-            body { margin: 16px; background: #fff; }
-          </style>
-        </head>
-        <body>
-          ${el.outerHTML}
-        </body>
-      </html>`;
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Invoice — ${meta.invoiceNo || ""}</title>
+    ${styles}
+    <style>
+      @page { size: A4; margin: 20mm; }
+      html, body {
+        width: 210mm; height: 297mm;
+        margin: 0 auto;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20mm;
+        box-sizing: border-box;
+      }
+      .invoice-page {
+        width: 100%;
+        max-width: 190mm;
+        background: white;
+        box-sizing: border-box;
+      }
+      .page-break { page-break-before: always; }
+      img { max-width: 120px; height: auto; }
+    </style>
+  </head>
+  <body>
+    <div class="invoice-page">
+      ${el.outerHTML}
+    </div>
+  </body>
+</html>`;
 
     const printWindow = window.open("", "_blank", "width=900,height=700");
     if (!printWindow) return;
@@ -85,12 +107,15 @@ export default function InvoiceGenerator() {
   return (
     <div className="invoice-root p-6 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto" ref={cardRef}>
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="bg-white rounded-2xl p-6">
+          {/* 🧾 Header with logo */}
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center font-bold">
-                EC
-              </div>
+              <img
+                src="https://eclatreach.com/assets/images/banner/logo.jpeg" // 👈 replace with your logo path or URL
+                alt="ÉCLAT Logo"
+                className="w-16 h-16 object-contain rounded-md"
+              />
               <div>
                 <div className="text-lg font-semibold">ÉCLAT Commerce</div>
                 <div className="text-sm text-slate-500">
@@ -99,16 +124,15 @@ export default function InvoiceGenerator() {
               </div>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={printInvoice}
-                className="px-3 py-2 rounded-xl bg-sky-600 text-white"
-              >
-                Print / Save PDF
-              </button>
-            </div>
+            <button
+              onClick={printInvoice}
+              className="px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700"
+            >
+              Print / Save PDF
+            </button>
           </div>
 
+          {/* 🧍 Customer + Invoice Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div className="p-4 bg-slate-50 rounded-lg">
               <div className="text-xs text-slate-500">BILL TO</div>
@@ -128,7 +152,6 @@ export default function InvoiceGenerator() {
                   <div className="font-semibold">{meta.date}</div>
                 </div>
               </div>
-
               <div className="mt-4">
                 <div className="text-xs text-slate-500">PAYMENT METHOD</div>
                 <div className="font-semibold">{meta.paymentMethod}</div>
@@ -136,6 +159,7 @@ export default function InvoiceGenerator() {
             </div>
           </div>
 
+          {/* 🛒 Product Table */}
           <div className="mt-6">
             <table className="w-full table-auto border-collapse">
               <thead>
@@ -161,7 +185,14 @@ export default function InvoiceGenerator() {
                 ))}
               </tbody>
             </table>
+<hr />
+<div className="grid grid-cols-2">
 
+           <div className="mt-10">
+            <p className="my-2">lfklshflskdhgl</p>
+            <p className="my-2">lfklshflskdhgl</p>
+            <p className="my-2">lfklshflskdhgl</p>
+            </div>
             <div className="mt-6 flex justify-end">
               <div className="w-80 bg-slate-50 p-4 rounded-lg">
                 <div className="flex justify-between">
@@ -182,6 +213,7 @@ export default function InvoiceGenerator() {
                   <div>{currency(total)}</div>
                 </div>
               </div>
+</div>
             </div>
           </div>
         </div>
