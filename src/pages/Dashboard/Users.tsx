@@ -13,9 +13,10 @@ const requestOptions:any = {
 fetch("https://www.api.eclatreach.com/api/getalluser", requestOptions)
   .then((response) => response.text())
   .then((result) => {
-    console.log(result)
     const data =JSON.parse(result);
+
     if(data['status']){
+           console.log(data['data']);
            
             setuserdata(data['data'])
     }
@@ -77,6 +78,7 @@ console.log(userdata);
                     </div>
                 </th>
                
+               
             </tr>
         </thead>
 
@@ -95,11 +97,12 @@ console.log(userdata);
                     
                 </td>
                 <td className="px-6 py-4">
-                   20
+                {res['orders']}
                 </td>
                 <td className="px-6 py-4">
-                  Rs.2999/-
+                Rs. {res['amount']}
                 </td>
+               
                 <td className="px-6 py-4 text-right">
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
                 </td>

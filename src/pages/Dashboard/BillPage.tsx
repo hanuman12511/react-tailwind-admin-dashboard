@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function InvoiceGenerator() {
-  const [customer, setCustomer] = useState<any>({
-    name: "John Doe",
-    address: "123 Main Street, Anytown, CA 90001",
-    email: "john@example.com",
-  });
+
+  const location = useLocation();
+  const orderData = location.state || {}; // 👈 get data from nav()
+  
+  const [customer, setCustomer] = useState<any>("");
   const [meta, setMeta] = useState<any>({
     invoiceNo: "INV-1001",
     date: new Date().toLocaleDateString(),
@@ -16,6 +17,14 @@ export default function InvoiceGenerator() {
   const [taxRate, setTaxRate] = useState<any>(18);
   const cardRef = useRef<any>(null);
 
+  useEffect(() => {
+    if (orderData && orderData.items) {
+      setItems(orderData.items);
+    } 
+  }, [orderData]);
+  
+  
+  
   useEffect(() => {
     resetExample();
   }, []);
@@ -59,11 +68,11 @@ export default function InvoiceGenerator() {
     <title>Invoice — ${meta.invoiceNo || ""}</title>
     ${styles}
     <style>
-      @page { size: A4; margin: 20mm; }
+      @page { size: A4;  }
       html, body {
-        width: 210mm; height: 297mm;
-        margin: 0 auto;
-        background: #fff;
+        width: 210mm; 
+        height: 297mm;
+       background: #fff;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
@@ -71,7 +80,7 @@ export default function InvoiceGenerator() {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        padding: 20mm;
+       
         box-sizing: border-box;
       }
       .invoice-page {
@@ -108,27 +117,27 @@ export default function InvoiceGenerator() {
     <div className="invoice-root p-6 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto" ref={cardRef}>
         <div className="bg-white rounded-2xl p-6">
-          {/* 🧾 Header with logo */}
+          
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-4">
               <img
-                src="https://eclatreach.com/assets/images/banner/logo.jpeg" // 👈 replace with your logo path or URL
+                src="https://eclatreach.com/assets/images/banner/logo.jpeg" 
                 alt="ÉCLAT Logo"
                 className="w-16 h-16 object-contain rounded-md"
               />
               <div>
-                <div className="text-lg font-semibold">ÉCLAT Commerce</div>
+                <div className="text-lg font-semibold">ÉCLAT</div>
                 <div className="text-sm text-slate-500">
-                  Billing & Invoice — e-commerce
+                  Billing & Invoice 
                 </div>
               </div>
             </div>
 
             <button
               onClick={printInvoice}
-              className="px-4 py-2 rounded-lg bg-sky-600 text-white hover:bg-sky-700"
+              className="px-4 py-2 rounded-lg bg-green-600  hover:bg-green-700 border"
             >
-              Print / Save PDF
+              Print Bill
             </button>
           </div>
 
@@ -185,8 +194,8 @@ export default function InvoiceGenerator() {
                 ))}
               </tbody>
             </table>
-<hr />
-<div className="grid grid-cols-2">
+            <hr />
+            <div className="grid grid-cols-2">
 
            <div className="mt-10">
             <p className="my-2">lfklshflskdhgl</p>

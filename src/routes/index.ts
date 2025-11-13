@@ -44,6 +44,11 @@ const coreRoutes = [
     title: 'Bill',
     component: BillPage,
   },
+  {
+    path: '/users',
+    title: 'Users',
+    component: Users,
+  },
 ];
 
 const routes = [...coreRoutes];
