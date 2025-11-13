@@ -1,4 +1,77 @@
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
+
 const Orders =()=>{
+
+    const[Orders,setOrders] =useState([]);
+
+    useEffect(()=>{
+
+        const raw = "";
+
+        const requestOptions :any= {
+          method: "GET",    
+          redirect: "follow"
+        };
+        
+        fetch("https://www.api.eclatreach.com/api/getorder", requestOptions)
+          .then((response) => response.text())
+          .then((result) => {
+            console.log(result);
+            const{status,message}=JSON.parse(result);
+            if(status){
+                alert(message)
+                const {data} = JSON.parse(result);
+                setOrders(data);
+            }
+        })
+          .catch((error) => console.error(error));
+
+    },[])
+    const items = [
+        { name: "Item 1", price: 10 },
+        { name: "Item 2", price: 15 },
+        { name: "Item 3", price: 20 },
+        { name: "Item 4", price: 25 },
+      ];
+    
+      const total = items.reduce((sum, item) => sum + item.price, 0);
+      const printBill = () => {
+    const printWindow :any= window.open("", "", "height=600,width=800");
+    printWindow.document.write(`
+      <html>
+        <head><title>Bill</title></head>
+        <body>
+          <h1>Invoice</h1>
+          <table border="1" cellpadding="10" cellspacing="0" style="width:100%; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items
+                .map(
+                  (item) => `
+                    <tr>
+                      <td>${item.name}</td>
+                      <td>$${item.price}</td>
+                    </tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>
+          <h3>Total: $${total}</h3>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
+    console.log(Orders);
+    
     return(
 
      
@@ -55,73 +128,39 @@ const Orders =()=>{
             </tr>
         </thead>
         <tbody>
+{
+Orders&&Orders.map((data)=>(
+
+
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   1000012
+                {data['order_number']}
                 </th>
                 <td className="px-6 py-4">
-                    Product name
+                   {data['product']['prodcutname']}
                 </td>
                 <td className="px-6 py-4">
-                   2
+                   {data['cart']['quantity']}
                 </td>
                 <td className="px-6 py-4">
-                 Rs. 2999/-
+                 Rs{ data['total_cents']}
                 </td>
                 <td className="px-6 py-4">
-                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
+                {data['address']['fullname']+""+data['address']['address']+""+data['address']['pincode']+""+data['address']['city']+""+data['address']['state']}
                 </td>
                 <td className="px-6 py-4 text-right">
                 <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
+
+                        <button  onClick={printBill} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">
+
+                        Bill
+                        </button>
+                      
                     <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
                 </td>
             </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   1000012
-                </th>
-                <td className="px-6 py-4">
-                    Product name
-                </td>
-                <td className="px-6 py-4">
-                   2
-                </td>
-                <td className="px-6 py-4">
-                 Rs. 2999/-
-                </td>
-                <td className="px-6 py-4">
-                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
-                </td>
-                <td className="px-6 py-4 text-right">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
-                   
-                </td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   1000012
-                </th>
-                <td className="px-6 py-4">
-                    Product name
-                </td>
-                <td className="px-6 py-4">
-                   2
-                </td>
-                <td className="px-6 py-4">
-                 Rs. 2999/-
-                </td>
-                <td className="px-6 py-4">
-                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
-                </td>
-                <td className="px-6 py-4 text-right">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
-                </td>
-            </tr>
+))
+}
            
         </tbody>
     </table>

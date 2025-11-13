@@ -3,6 +3,8 @@ import Orders from '../pages/Dashboard/Orders';
 import CompleteOrder from '../pages/Dashboard/CompleteOrder';
 import Users from '../pages/Dashboard/Users';
 import AddProduct from '../pages/Dashboard/AddProduct';
+import Bill from '../pages/Dashboard/Bill';
+import BillPage from '../pages/Dashboard/BillPage';
 
 
 
@@ -36,12 +38,12 @@ const coreRoutes = [
     title: 'Complete Order',
     component: CompleteOrder,
   },
-  {
-    path: '/users',
-    title: 'Users',
-    component: Users,
-  },
   
+  {
+    path: '/bill',
+    title: 'Bill',
+    component: BillPage,
+  },
 ];
 
 const routes = [...coreRoutes];
