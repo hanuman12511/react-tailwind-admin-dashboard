@@ -4,22 +4,26 @@ import { useLocation } from "react-router-dom";
 export default function InvoiceGenerator() {
 
   const location = useLocation();
-  const orderData = location.state || {}; // 👈 get data from nav()
+  const orderData = location.state || {}; 
   
-  const [customer, setCustomer] = useState<any>("");
+  const [customer] = useState<any>("");
   const [meta, setMeta] = useState<any>({
     invoiceNo: "INV-1001",
     date: new Date().toLocaleDateString(),
     paymentMethod: "Credit Card",
   });
   const [items, setItems] = useState<any>([]);
+  const [billing, setbilling] = useState<any>({});
   const [shipping, setShipping] = useState<any>(0);
   const [taxRate, setTaxRate] = useState<any>(18);
   const cardRef = useRef<any>(null);
 
   useEffect(() => {
-    if (orderData && orderData.items) {
-      setItems(orderData.items);
+     console.log(orderData);
+     
+    if (orderData) {
+      setbilling(orderData['address'])
+      setItems(orderData);
     } 
   }, [orderData]);
   
@@ -32,10 +36,7 @@ export default function InvoiceGenerator() {
   const currency = (v) => "₹" + Number(v || 0).toFixed(2);
 
   function resetExample() {
-    setItems([
-      { title: "T-Shirt — ÉCLAT Bronze", price: 799, qty: 2, discount: 0 },
-      { title: "IceMaster Tumbler 650ml", price: 1299, qty: 1, discount: 100 },
-    ]);
+   
     setShipping(0);
     setTaxRate(18);
     setMeta((m) => ({ ...m, date: new Date().toLocaleDateString() }));
@@ -47,9 +48,9 @@ export default function InvoiceGenerator() {
     return Math.max(0, gross - disc);
   }
 
-  const subtotal = items.reduce((s, i) => s + lineTotal(i), 0);
-  const tax = subtotal * (Number(taxRate || 0) / 100);
-  const total = subtotal + Number(shipping || 0) + tax;
+ // const subtotal = items&&items.reduce((s, i) => s + lineTotal(i), 0);
+  // const tax = subtotal * (Number(taxRate || 0) / 100);
+  // const total = subtotal + Number(shipping || 0) + tax;
 
   function printInvoice() {
     const el = cardRef.current;
@@ -113,6 +114,10 @@ export default function InvoiceGenerator() {
     }, 600);
   }
 
+console.log("item=>>>",items );
+
+
+
   return (
     <div className="invoice-root p-6 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto" ref={cardRef}>
@@ -145,9 +150,10 @@ export default function InvoiceGenerator() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div className="p-4 bg-slate-50 rounded-lg">
               <div className="text-xs text-slate-500">BILL TO</div>
-              <div className="mt-2 font-semibold">{customer.name}</div>
-              <div className="text-sm text-slate-700">{customer.address}</div>
-              <div className="text-sm text-slate-700">{customer.email}</div>
+              <div className="mt-2 font-semibold">{billing['fullname']}</div>
+              <div className="text-sm text-slate-700">{billing['address']}</div>
+              <div className="text-sm text-slate-700">{billing['email']}</div>
+              <div className="text-sm text-slate-700">{billing['phone']}</div>
             </div>
 
             <div className="p-4 bg-slate-50 rounded-lg">
@@ -181,7 +187,7 @@ export default function InvoiceGenerator() {
                 </tr>
               </thead>
               <tbody>
-                {items.map((it, idx) => (
+                {items.length>0 &&items.map((it, idx) => (
                   <tr key={idx} className="border-t">
                     <td className="py-3">{it.title}</td>
                     <td className="py-3">{currency(it.price)}</td>
@@ -206,7 +212,7 @@ export default function InvoiceGenerator() {
               <div className="w-80 bg-slate-50 p-4 rounded-lg">
                 <div className="flex justify-between">
                   <div className="text-sm text-slate-500">Subtotal</div>
-                  <div>{currency(subtotal)}</div>
+                  <div>{}</div>
                 </div>
                 <div className="flex justify-between mt-2">
                   <div className="text-sm text-slate-500">Shipping</div>
@@ -214,12 +220,12 @@ export default function InvoiceGenerator() {
                 </div>
                 <div className="flex justify-between mt-2">
                   <div className="text-sm text-slate-500">Tax ({taxRate}%)</div>
-                  <div>{currency(tax)}</div>
+                  {/* <div>{currency(tax)}</div> */}
                 </div>
                 <hr className="my-3" />
                 <div className="flex justify-between font-semibold text-lg">
                   <div>Total</div>
-                  <div>{currency(total)}</div>
+                  {/* <div>{currency(total)}</div> */}
                 </div>
               </div>
 </div>

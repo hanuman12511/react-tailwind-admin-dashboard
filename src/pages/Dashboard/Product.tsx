@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Product = () => {
 const nav =useNavigate();
+
 const[cart,setCart]=useState<[]>([])
 const showProduct=()=>{
     const myHeaders = new Headers();
@@ -33,6 +34,53 @@ const handleEdit = (data: any) => {
     const handleaddproduct=()=>{
        nav('/addproduct');
     }
+
+    
+    const handleactivebtn=(id:any,status:any)=>{
+      console.log(id);
+      let statuss = "";
+      if(status =="show"){
+         statuss = "delete";
+      }
+      else{
+         statuss = "show";
+
+      }
+
+
+      const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "id": id,
+  "status": statuss
+});
+
+const requestOptions:any = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://www.api.eclatreach.com/api/productaction", requestOptions)
+  .then((response) => response.text())
+  .then((result) => {
+    console.log(result)
+    const data = JSON.parse(result);
+    if(data['status']){
+
+      showProduct();
+    }
+  }
+  )
+  .catch((error) => console.error(error));
+      
+   
+    }
+console.log(cart);
+
+
   return (
     <>
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -113,16 +161,38 @@ const handleEdit = (data: any) => {
                            
 
                 </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className="grid  align-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <button
   onClick={() => handleEdit(data)}
-  className="mx-3 px-4 py-2 rounded-lg bg-gradient-to-r from-green-600 to-emerald-700
+  className=" px-4 py-2 rounded-lg bg-gradient-to-r from-green-600 to-emerald-700
               font-semibold shadow-md hover:shadow-lg hover:opacity-90
              active:scale-95 transition-all duration-200"
 >
   Edit
 </button>
+<div
+className="mt-2"
+      onClick={() =>handleactivebtn(data['id'],data['status'])}
+      style={{
+        
+        width: "50px",
+        height: "20px",
+        borderRadius: "20px",
+        cursor: "pointer",
+        backgroundColor:data['status']=="show" ? "green" : "gray",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      
 
+      <div
+        className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-all
+          ${data['status']=="show" ? "translate-x-7" : "translate-x-0"}`}
+      ></div>
+    </div>
+   
+    
                 </th>
                 </tr>
           ))

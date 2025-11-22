@@ -22,6 +22,7 @@ const Orders =()=>{
            
             const{status}=JSON.parse(result);
             if(status){
+               console.log(result);
                
                 const {data} = JSON.parse(result);
                 setOrders(data);
@@ -39,8 +40,7 @@ const Orders =()=>{
         nav("/bill", { state: data });
     
   };
-
-    console.log(Orders);
+    console.log("Orders=>",Orders);
     
     return(
 
@@ -58,24 +58,17 @@ const Orders =()=>{
         <thead className="text-xs text-gray-700 uppercase  dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">
+                Date
+                </th>
+                <th scope="col" className="px-6 py-3">
                 Order Number
                 </th>
+               
                 <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">
-                       Product Name
-                        <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-  </svg></a>
-                    </div>
+                Quantity
                 </th>
-                <th scope="col" className="px-6 py-3">
-                    <div className="flex items-center">
-                    Quantity
-                        <a href="#"><svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-  </svg></a>
-                    </div>
-                </th>
+               
+                
                 <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">
                        Total Amount
@@ -107,19 +100,20 @@ const Orders =()=>{
         </thead>
         <tbody>
 {
-Orders&&Orders.map((data)=>(
+Orders&&Orders.map((data:any)=>(
 
 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {data['date']}
+                </th>
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {data['order_number']}
                 </th>
-                <td className="px-6 py-4">
-                   {data['product']['prodcutname']}
-                </td>
-                <td className="px-6 py-4">
-                   {data['cart']['quantity']}
-                </td>
+                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {data['qty']}
+                </th>
+              
                 <td className="px-6 py-4">
                  Rs{ data['total_cents']}
                 </td>
@@ -128,7 +122,7 @@ Orders&&Orders.map((data)=>(
                 </td>
                 <td className="px-6 py-4">
                 {data['address']['fullname']+""+data['address']['address']+""+data['address']['pincode']+""+data['address']['city']+""+data['address']['state']}
-                </td>
+                </td> 
                 <td className="px-6 py-4 text-left">
                 <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
 <br />

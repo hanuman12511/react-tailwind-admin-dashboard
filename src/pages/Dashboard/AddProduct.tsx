@@ -48,7 +48,7 @@ useEffect(()=>{
         
     }
 
-},[data])
+},[])
 
 
 
@@ -73,12 +73,19 @@ useEffect(()=>{
 
 const handelPrice=(event:any)=>{
 
-  const price1:number = parseInt(event.target.value);
- const dis = price1 * discount /100;
-
-  const beforediscount1= price1 + dis;
-  setPrice(price1);
-  setBeforeDiscount(beforediscount1);
+  const price1:any = parseInt(event.target.value);
+  if(price1!=0 || price1 !=null ||!Number.isNaN(price1) ){
+    setPrice(price1);
+    
+    const dis = price1 * discount /100;
+    
+    const beforediscount1= price1 + dis;
+    setBeforeDiscount(beforediscount1);
+  }
+  else{
+    
+    setPrice("");
+  }
 
 }
 const handelDiscount=(event:any)=>{
@@ -209,7 +216,9 @@ const handleclose=()=>{
         <div className="grid  mb-4">
               <div>
                 <label className="text-sm">Price</label>
-                <input type="text" placeholder="price" className="w-full border rounded p-2 mt-1" value={price} onChange={(event)=>handelPrice(event)}/>
+                <input type="text" placeholder="price" className="w-full border rounded p-2 mt-1" 
+                value={isNaN(price) ? "" : price} 
+                onChange={(event)=>handelPrice(event)}/>
               </div>
             </div>
             <div className="grid  mb-4">
