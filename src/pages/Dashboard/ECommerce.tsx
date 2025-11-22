@@ -140,56 +140,11 @@ const ECommerce = () => {
                 Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
                 </td>
                 <td className="px-6 py-4 text-right">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
+                  <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">View</a>
                 </td>
             </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   1000012
-                </th>
-                <td className="px-6 py-4">
-                    Product name
-                </td>
-                <td className="px-6 py-4">
-                   2
-                </td>
-                <td className="px-6 py-4">
-                 Rs. 2999/-
-                </td>
-                <td className="px-6 py-4">
-                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
-                </td>
-                <td className="px-6 py-4 text-right">
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
-                   
-                </td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   1000012
-                </th>
-                <td className="px-6 py-4">
-                    Product name
-                </td>
-                <td className="px-6 py-4">
-                   2
-                </td>
-                <td className="px-6 py-4">
-                 Rs. 2999/-
-                </td>
-                <td className="px-6 py-4">
-                Rahul Sharma, 123 MG Road, Flat No. 4, Bengaluru, Karnataka 560001, India
-                </td>
-                <td className="px-6 py-4 text-right">
-                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Book</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Bill</a>
-                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-2">Label</a>
-                </td>
-            </tr>
+         
+          
            
         </tbody>
     </table>

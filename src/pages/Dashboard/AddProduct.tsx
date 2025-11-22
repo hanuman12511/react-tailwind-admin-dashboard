@@ -17,6 +17,10 @@ const[prodcutname,setProductName] = useState<string>("");
 const[discount,setDiscount] = useState<any>("");
 const[beforediscount,setBeforeDiscount] = useState<any>("");
 const[price,setPrice] = useState<any>("");
+const[weight,setweight] = useState<any>("");
+const[length,setlength] = useState<any>("");
+const[width,setwidth] = useState<any>("");
+const[height,setheight] = useState<any>("");
 
 const [items] = useState<any>(["Bronze","Tumblers","Ceramic"]);
 const [category, setcategory] = useState<any>("");
@@ -45,6 +49,10 @@ useEffect(()=>{
         setdescription(data.description);
         setSpecial(data.Special);
         setDimensions(data.Dimensions);
+        setweight(data.weight);
+        setwidth(data.width);
+        setheight(data.height);
+        setlength(data.length);
         
     }
 
@@ -104,12 +112,6 @@ const handleSave = () => {
         alert("pls product category")
         return ;
        }
-       
-
- if(prodcutcode ==""){
-  alert("pls product code")
-  return ;
- }
  if(prodcutname ==""){
   alert("pls product name")
   return ;
@@ -134,7 +136,11 @@ const raw = JSON.stringify({
   "SubImages": SubImages,
   "description": description,
   "Special": Special,
-  "Dimensions": Dimensions
+  "Dimensions": Dimensions,
+  "weight": weight,
+  "width":width,
+  "length":length,
+  "height": height
 });
 
 const requestOptions:any = {
@@ -148,6 +154,8 @@ fetch("https://www.api.eclatreach.com/api/productadd", requestOptions)
   .then((response) => response.text())
   .then((result) => {
    
+    console.log(result);
+    
     const msg = JSON.parse(result);
 nav("/prodcut")
 console.log(msg);
@@ -172,7 +180,7 @@ const handleclose=()=>{
  <div className="p-6 max-w-3xl mx-auto  min-h-screen lg:py-25 shadow-lg rounded-2xl ">
       <h2 className="text-xl font-bold mb-2">Add Product</h2>
       <hr/>
-        <div className="grid lg:grid-cols-2 gab-6 my-10">
+        <div className="grid lg:grid-cols-2 mt-10">
         <div className="grid  mb-4">
                 <label className="text-sm">Productcategory</label>
               <div>
@@ -193,16 +201,10 @@ const handleclose=()=>{
 
               </div>
             </div>
-        <div className="grid  mb-4">
-              <div>
-                <label className="text-sm">Product Code</label>
-                <input type="text" placeholder="Product Code" className="w-full border rounded p-2 mt-1" value={prodcutcode} onChange={(event)=>setProductCode(event.target.value)}/>
-              </div>
-            </div>
+    
            
            
-        </div>
-        <div className="grid lg:grid-cols-1 gab-6">
+        
        
             <div className="grid  mb-4">
               <div>
@@ -212,7 +214,7 @@ const handleclose=()=>{
             </div>
            
         </div>
-        <div className="grid lg:grid-cols-3 gab-6">
+        <div className="grid lg:grid-cols-3 gap-6">
         <div className="grid  mb-4">
               <div>
                 <label className="text-sm">Price</label>
@@ -233,6 +235,42 @@ const handleclose=()=>{
                 <input type="text" placeholder="Before Discount Price" className="w-full border rounded p-2 mt-1" value={beforediscount} readOnly/>
               </div>
             </div>
+        </div>
+        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid  mb-3">
+              <div>
+                <label className="text-sm">Weight</label>
+                <input type="text" placeholder="weight kg" className="w-full border rounded p-2 mt-1" 
+                value={isNaN(weight) ? "" : weight} 
+                onChange={(event)=>setweight(event.target.value)}/>
+              </div>
+            </div>
+
+            <div className="grid  mb-3">
+              <div>
+                <label className="text-sm">Length</label>
+                <input type="text" placeholder="length cm" className="w-full border rounded p-2 mt-1"  value={isNaN(length) ? "" : length} 
+                onChange={(event)=>setlength(event.target.value)} />
+              </div>
+            </div>
+            <div className="grid  mb-3">
+              <div>
+                <label className="text-sm">Width</label>
+                <input type="text" placeholder="width cm" className="w-full border rounded p-2 mt-1" value={isNaN(width) ? "" : width} 
+                onChange={(event)=>setwidth(event.target.value)}  />
+              </div>
+            </div>
+       
+            <div className="grid  mb-3">
+              <div>
+                <label className="text-sm">Height</label>
+                <input type="text" placeholder="height cm" className="w-full border rounded p-2 mt-1"  value={isNaN(height) ? "" : height} 
+                onChange={(event)=>setheight(event.target.value)}  />
+              </div>
+            </div>
+       
+       
+       
         </div>
        
       
@@ -319,7 +357,7 @@ const handleclose=()=>{
       />
 </div>
 </div>
-<div className="grid grid-cols-2 rounded-sm  ">
+<div className="grid grid-cols-2 rounded-sm  gap-10">
     
 <button
         onClick={handleSave}
