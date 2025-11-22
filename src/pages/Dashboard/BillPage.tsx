@@ -128,12 +128,23 @@ console.log("item=>>>",items );
               <img
                 src="https://eclatreach.com/assets/images/banner/logo.jpeg" 
                 alt="ÉCLAT Logo"
-                className="w-16 h-16 object-contain rounded-md"
+                className="w-40 h-40 object-contain rounded-md"
               />
               <div>
                 <div className="text-lg font-semibold">ÉCLAT</div>
                 <div className="text-sm text-slate-500">
-                  Billing & Invoice 
+                  <p>
+                     08ACGPN6285L1ZY<br/>
+                     S.NO F-42, RANGOLI PLAZA<br/>
+                     MAHARANA PRATAP MARG<br/>
+Jaipur
+Rajasthan
+ 302034
+ <br/>
+ 8107630774<br/>
+ support@eclatreach.com
+                  
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,40 +156,35 @@ console.log("item=>>>",items );
               Print Bill
             </button>
           </div>
-
-          {/* 🧍 Customer + Invoice Info */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div className="p-4 bg-slate-50 rounded-lg">
+<hr />
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-6">
+            <div className=" bg-slate-50 rounded-lg">
               <div className="text-xs text-slate-500">BILL TO</div>
               <div className="mt-2 font-semibold">{billing['fullname']}</div>
               <div className="text-sm text-slate-700">{billing['address']}</div>
-              <div className="text-sm text-slate-700">{billing['email']}</div>
-              <div className="text-sm text-slate-700">{billing['phone']}</div>
+              <div className="text-sm text-slate-700">{billing['city']},{billing['state']}</div>
+              <div className="text-sm text-slate-700">{billing['pincode']} {billing['country']}</div>
             </div>
 
-            <div className="p-4 bg-slate-50 rounded-lg">
-              <div className="flex justify-between">
+           
                 <div>
                   <div className="text-xs text-slate-500">INVOICE #</div>
-                  <div className="font-semibold">{meta.invoiceNo}</div>
+                  <div className="font-semibold">{items['order_number']}</div>
                 </div>
                 <div>
                   <div className="text-xs text-slate-500">DATE</div>
-                  <div className="font-semibold">{meta.date}</div>
+                  <div className="font-semibold">{items['date']}</div>
                 </div>
-              </div>
-              <div className="mt-4">
+              <div className="">
                 <div className="text-xs text-slate-500">PAYMENT METHOD</div>
-                <div className="font-semibold">{meta.paymentMethod}</div>
-              </div>
+                <div className="font-semibold">{items['order_number']}</div>
             </div>
-          </div>
-
-          {/* 🛒 Product Table */}
+            </div>
           <div className="mt-6">
-            <table className="w-full table-auto border-collapse">
+
+            <table className="w-full table-auto border-collapse py-3">
               <thead>
-                <tr className="text-left text-sm text-slate-500 border-b">
+                <tr className="text-left text-sm text-slate-500 border-b border-t py-3">
                   <th className="pb-2">Product</th>
                   <th className="pb-2">Price</th>
                   <th className="pb-2">Qty</th>
