@@ -13,9 +13,10 @@ export default function InvoiceGenerator() {
     paymentMethod: "Credit Card",
   });
   const [items, setItems] = useState<any>([]);
+  const [cart,  setcart] = useState<any>([]);
   const [billing, setbilling] = useState<any>({});
   const [shipping, setShipping] = useState<any>(0);
-  const [taxRate, setTaxRate] = useState<any>(18);
+  const [taxRate, setTaxRate] = useState<any>(5);
   const cardRef = useRef<any>(null);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function InvoiceGenerator() {
     if (orderData) {
       setbilling(orderData['address'])
       setItems(orderData);
+      setcart(JSON.parse(orderData['cart']));
     } 
   }, [orderData]);
   
@@ -37,15 +39,14 @@ export default function InvoiceGenerator() {
 
   function resetExample() {
    
-    setShipping(0);
-    setTaxRate(18);
+    setShipping(1000);
+    setTaxRate(5);
     setMeta((m) => ({ ...m, date: new Date().toLocaleDateString() }));
   }
 
-  function lineTotal(it) {
-    const gross = Number(it.price || 0) * Number(it.qty || 0);
-    const disc = Number(it.discount || 0);
-    return Math.max(0, gross - disc);
+  function lineTotal(it:any) {
+    const gross = Number(it.price || 0) * Number(it.quantity || 0);
+    return gross;
   }
 
  // const subtotal = items&&items.reduce((s, i) => s + lineTotal(i), 0);
@@ -114,7 +115,7 @@ export default function InvoiceGenerator() {
     }, 600);
   }
 
-console.log("item=>>>",items );
+console.log("cart=>>>",cart );
 
 
 
@@ -188,17 +189,17 @@ Rajasthan
                   <th className="pb-2">Product</th>
                   <th className="pb-2">Price</th>
                   <th className="pb-2">Qty</th>
-                  <th className="pb-2">Discount</th>
+                  {/* <th className="pb-2">Discount</th> */}
                   <th className="pb-2 text-right">Line total</th>
                 </tr>
               </thead>
               <tbody>
-                {items.length>0 &&items.map((it, idx) => (
-                  <tr key={idx} className="border-t">
-                    <td className="py-3">{it.title}</td>
+                {cart.length>0 &&cart.map((it:any, idx:any) => (
+                  <tr key={idx} className="">
+                    <td className="py-3">{it.productname}</td>
                     <td className="py-3">{currency(it.price)}</td>
-                    <td className="py-3">{it.qty}</td>
-                    <td className="py-3">{currency(it.discount)}</td>
+                    <td className="py-3">{it.quantity}</td>
+                    {/* <td className="py-3">{currency(it.discount)}</td> */}
                     <td className="py-3 text-right">
                       {currency(lineTotal(it))}
                     </td>
@@ -231,7 +232,7 @@ Rajasthan
                 <hr className="my-3" />
                 <div className="flex justify-between font-semibold text-lg">
                   <div>Total</div>
-                  {/* <div>{currency(total)}</div> */}
+                   <div>{currency(items['total_cents'])}</div> 
                 </div>
               </div>
 </div>

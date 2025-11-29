@@ -21,6 +21,7 @@ const[weight,setweight] = useState<any>("");
 const[length,setlength] = useState<any>("");
 const[width,setwidth] = useState<any>("");
 const[height,setheight] = useState<any>("");
+const[quantity,setquantity] = useState<any>("");
 
 const [items] = useState<any>(["Bronze","Tumblers","Ceramic"]);
 const [category, setcategory] = useState<any>("");
@@ -53,6 +54,7 @@ useEffect(()=>{
         setwidth(data.width);
         setheight(data.height);
         setlength(data.length);
+        setquantity(data.quantity);
         
     }
 
@@ -140,7 +142,8 @@ const raw = JSON.stringify({
   "weight": weight,
   "width":width,
   "length":length,
-  "height": height
+  "height": height,
+  "quantity": quantity
 });
 
 const requestOptions:any = {
@@ -236,7 +239,15 @@ const handleclose=()=>{
               </div>
             </div>
         </div>
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid lg:grid-cols-5 gap-6">
+        <div className="grid  mb-3">
+              <div>
+                <label className="text-sm">Quantity</label>
+                <input type="text" placeholder="quantity" className="w-full border rounded p-2 mt-1" 
+                value={isNaN(quantity) ? "" : quantity} 
+                onChange={(event)=>setquantity(event.target.value)}/>
+              </div>
+            </div>
         <div className="grid  mb-3">
               <div>
                 <label className="text-sm">Weight</label>

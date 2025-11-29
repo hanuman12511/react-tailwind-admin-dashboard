@@ -115,16 +115,17 @@ console.log(cart);
       </h6>
 
       </div>
+       <div className="relative overflow-x-auto  sm:rounded-lg">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase  dark:text-gray-400">
             <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className=" py-3">
                  SRNo.
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 py-3">
                   Product Code
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 py-3">
                    Image
                 </th>
                 <th scope="col" className="px-6 py-3">
@@ -144,13 +145,13 @@ console.log(cart);
           {cart&&cart.map((data:any,index)=>(
             
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {index+1}
                 </th>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" className=" py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <h4 className="mx-10">{data['prodcutcode']}</h4>
                 </th>
-                <td className="px-6 py-4">
+                <td className="px-2 py-4">
                 <img src={data['MainImages']} alt=""  style={{width:100}}/>
                 </td>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -200,6 +201,7 @@ className="mt-2"
           }  
                 </tbody>
           </table>
+          </div>
           </div>
     </>
   );
