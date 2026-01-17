@@ -23,7 +23,7 @@ const[width,setwidth] = useState<any>("");
 const[height,setheight] = useState<any>("");
 const[quantity,setquantity] = useState<any>("");
 
-const [items] = useState<any>(["Bronze","Tumblers","Ceramic"]);
+const [items] = useState<any>(["Bronze Cookware","Bronze Serving","Tumblers","Ceramic"]);
 const [category, setcategory] = useState<any>("");
 
 const [MainImages,setMainImages] = useState<any>("");
@@ -145,6 +145,9 @@ const raw = JSON.stringify({
   "height": height,
   "quantity": quantity
 });
+
+console.log(raw);
+
 
 const requestOptions:any = {
   method: "POST",

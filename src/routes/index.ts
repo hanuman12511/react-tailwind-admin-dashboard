@@ -5,6 +5,8 @@ import Users from '../pages/Dashboard/Users';
 import AddProduct from '../pages/Dashboard/AddProduct';
 import Bill from '../pages/Dashboard/Bill';
 import BillPage from '../pages/Dashboard/BillPage';
+import StackPage from '../pages/Dashboard/StockPage';
+import StockPage from '../pages/Dashboard/StockPage';
 
 
 
@@ -48,6 +50,11 @@ const coreRoutes = [
     path: '/users',
     title: 'Users',
     component: Users,
+  },
+  {
+    path: '/stock',
+    title: 'stock',
+    component: StockPage,
   },
 ];
 

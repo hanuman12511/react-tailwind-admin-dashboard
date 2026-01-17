@@ -169,7 +169,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           !open && 'hidden'
                         }`}
                       >
-                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                        <ul className=" flex flex-col gap-2.5 pl-6">
                           <li>
                             <NavLink
                               to="/"
@@ -198,6 +198,25 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               }
                             >
                               Product
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                      <div
+                        className={`translate transform overflow-hidden ${
+                          !open && 'hidden'
+                        }`}
+                      >
+                        <ul className="flex flex-col gap-2.5 pl-6">
+                          <li>
+                            <NavLink
+                              to="/Stock"
+                              className={({ isActive }) =>
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                (isActive && '!text-white')
+                              }
+                            >
+                              Stock
                             </NavLink>
                           </li>
                         </ul>
