@@ -16,6 +16,8 @@ export default function InvoiceGenerator() {
   const [cart,  setcart] = useState<any>([]);
   const [billing, setbilling] = useState<any>({});
   const [shipping, setShipping] = useState<any>(0);
+  const [subtotal, setsubtotal] = useState<any>(0);
+  const [gst, setgst] = useState<any>(0);
   const [taxRate, setTaxRate] = useState<any>(5);
   const cardRef = useRef<any>(null);
 
@@ -25,7 +27,20 @@ export default function InvoiceGenerator() {
     if (orderData) {
       setbilling(orderData['address'])
       setItems(orderData);
-      setcart(JSON.parse(orderData['cart']));
+      let cart = JSON.parse(orderData['cart']);
+      setcart(cart);
+let subtotal=0;
+
+
+
+      cart.map((h:any)=>{
+        subtotal+=h.quantity*h.price;
+
+      })
+      setsubtotal(subtotal);
+      let subtt=orderData['shipping_cost']+subtotal;
+      let gstt=subtt*0.05;
+      setgst(gstt);
     } 
   }, [orderData]);
   
@@ -178,7 +193,7 @@ Rajasthan
                 </div>
               <div className="">
                 <div className="text-xs text-slate-500">PAYMENT METHOD</div>
-                <div className="font-semibold">{items['order_number']}</div>
+                <div className="font-semibold">{items['payment']}</div>
             </div>
             </div>
           <div className="mt-6">
@@ -211,23 +226,23 @@ Rajasthan
             <div className="grid grid-cols-2">
 
            <div className="mt-10">
-            <p className="my-2">lfklshflskdhgl</p>
-            <p className="my-2">lfklshflskdhgl</p>
-            <p className="my-2">lfklshflskdhgl</p>
+            <p className="my-2"><b>Terms Of Conditions</b></p>
+            <p className="my-2">https://eclatreach.com/termsconditions</p>
+           
             </div>
             <div className="mt-6 flex justify-end">
               <div className="w-80 bg-slate-50 p-4 rounded-lg">
                 <div className="flex justify-between">
                   <div className="text-sm text-slate-500">Subtotal</div>
-                  <div>{}</div>
+                  <div>{currency(subtotal)}</div>
                 </div>
                 <div className="flex justify-between mt-2">
                   <div className="text-sm text-slate-500">Shipping</div>
-                  <div>{currency(shipping)}</div>
+                  <div>{currency(items['shipping_cost'])}</div>
                 </div>
                 <div className="flex justify-between mt-2">
                   <div className="text-sm text-slate-500">Tax ({taxRate}%)</div>
-                  {/* <div>{currency(tax)}</div> */}
+                  <div>{currency(gst)}</div> 
                 </div>
                 <hr className="my-3" />
                 <div className="flex justify-between font-semibold text-lg">
