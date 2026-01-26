@@ -115,7 +115,7 @@ export default function InvoiceGenerator() {
     }, 600);
   }
 
-console.log("cart=>>>",cart );
+console.log("cart=>>>",items );
 
 
 
